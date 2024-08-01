@@ -40,3 +40,4 @@ help:
     @echo "  make run    - Compila e executa o projeto"
     @echo "  make clean  - Limpa os arquivos gerados"
     @echo "  make help   - Exibe esta mensagem de ajuda"
+
