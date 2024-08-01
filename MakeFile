@@ -1,0 +1,42 @@
+# Define o compilador
+CC = gcc
+
+# Define os flags do compilador
+CFLAGS = -Wall -Wextra -g
+
+# Nome do executável
+TARGET = program
+
+# Arquivo fonte
+SRCS = main.c
+
+# Arquivos objeto (gerados a partir dos arquivos fonte)
+OBJS = $(SRCS:.c=.o)
+
+# Regra padrão (primeira regra é a padrão)
+all: $(TARGET)
+
+# Como gerar o executável
+$(TARGET): $(OBJS)
+    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Regra para gerar arquivos objeto a partir dos arquivos fonte
+%.o: %.c
+    $(CC) $(CFLAGS) -c $< -o $@
+
+# Limpeza dos arquivos gerados
+clean:
+    rm -f $(OBJS) $(TARGET)
+
+# Executa o programa
+run: $(TARGET)
+    ./$(TARGET)
+
+# Exibe a mensagem de uso
+.PHONY: help
+help:
+    @echo "Opções disponíveis:"
+    @echo "  make        - Compila o projeto"
+    @echo "  make run    - Compila e executa o projeto"
+    @echo "  make clean  - Limpa os arquivos gerados"
+    @echo "  make help   - Exibe esta mensagem de ajuda"
